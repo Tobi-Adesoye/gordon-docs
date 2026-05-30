@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gordon Engine | API Docs</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { color: #d63384; }
+        .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Gordon Engine API</h1>
+    <p>High-speed matrix optimization service for production-grade workloads.</p>
+
+    <h2>Endpoint</h2>
+    <pre>POST https://gordon-core-engine.onrender.com/api/v1/optimize</pre>
+
+    <h2>Request Format</h2>
+    <p>Send your data as a JSON object with the following schema:</p>
+    <pre>{
+  "shape": [3],
+  "matrix_data": [1.0, 2.0, 3.0]
+}</pre>
+
+    <h2>Authentication</h2>
+    <p>Include your API key in the header:</p>
+    <pre>Authorization: Bearer YOUR_SECRET_KEY</pre>
+
+    <h2>Test the Connection</h2>
+    <p>Click below to verify the factory is online (Health Check):</p>
+    <button class="btn" onclick="checkHealth()">Test Health Check</button>
+    <p id="status"></p>
+
+    <script>
+        async function checkHealth() {
+            const status = document.getElementById('status');
+            try {
+                const res = await fetch('https://gordon-core-engine.onrender.com/health');
+                const text = await res.text();
+                status.innerHTML = `<strong>Status:</strong> ${text}`;
+            } catch (err) {
+                status.innerText = "Error: Could not connect to the engine.";
+            }
+        }
+    </script>
+</body>
+</html>
